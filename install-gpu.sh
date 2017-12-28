@@ -29,7 +29,7 @@ conda upgrade -y --all
 pip uninstall -y theano 
 
 # install and configure theano
-conda install theano pygpu
+conda install -y theano pygpu
 echo "[global]
 device = gpu
 floatX = float32
