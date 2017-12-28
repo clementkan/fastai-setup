@@ -22,8 +22,8 @@ sudo apt-get --assume-yes install software-properties-common
 # bash "Anaconda2-4.2.0-Linux-x86_64.sh" -b
 
 # echo "export PATH=\"$HOME/anaconda2/bin:\$PATH\"" >> ~/.bashrc
-export PATH="$HOME/anaconda2/bin:$PATH"
-conda install -y bcolz
+# export PATH="$HOME/anaconda2/bin:$PATH"
+# conda install -y bcolz
 conda upgrade -y --all
 
 pip uninstall -y theano 
@@ -39,13 +39,13 @@ root = /usr/local/cuda" > ~/.theanorc
 
 # install and configure keras
 pip install keras==1.2.2
-mkdir ~/.keras
-echo '{
-    "image_dim_ordering": "th",
-    "epsilon": 1e-07,
-    "floatx": "float32",
-    "backend": "theano"
-}' > ~/.keras/keras.json
+# mkdir ~/.keras
+# echo '{
+#     "image_dim_ordering": "th",
+#     "epsilon": 1e-07,
+#     "floatx": "float32",
+#     "backend": "theano"
+# }' > ~/.keras/keras.json
 
 # install cudnn libraries
 # wget "http://files.fast.ai/files/cudnn.tgz" -O "cudnn.tgz"
