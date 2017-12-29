@@ -26,6 +26,8 @@ echo "# Start your instance:" >> $instanceName-commands.txt
 echo "gcloud compute instances start $instanceName"  >> $instanceName-commands.txt
 echo "# Reboot your instance:" >> $instanceName-commands.txt
 echo "gcloud compute instances reset $instanceName"  >> $instanceName-commands.txt
+echo "# Address for Jupyter notebook in your browser:" >> $instanceName-commands.txt
+echo "http://$ipAddress:8888"
 
 echo "gcloud compute firewall-rules delete default-allow-jupyter" >> $instanceName-remove.ps1
 echo "gcloud compute firewall-rules delete default-allow-https" >> $instanceName-remove.ps1
