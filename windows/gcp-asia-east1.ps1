@@ -37,9 +37,3 @@ echo "gcloud compute addresses delete $addressName" >> $instanceName-remove.ps1
 
 echo "All done. Find all you need to connect in the $instanceName-commands.txt file and to remove the stack call $instanceName-remove.ps1"
 echo "Connect to your instance: gcloud compute --project $projectId ssh --zone $zone $instanceName"
-
-if ($Host.Name -eq "ConsoleHost")
-{
-    Write-Host "Press any key to continue..."
-    $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyUp") > $null
-}
