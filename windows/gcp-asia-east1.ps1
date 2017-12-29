@@ -8,9 +8,8 @@ echo "Creating static IP address..."
 gcloud compute --project $projectId addresses create $addressName --region $region
 
 $ipAddress=gcloud compute addresses describe $addressName --region=$region --format='value(address)'
-echo "Created static IP address $ipAddress in $region"
 
-echo "Creating virtual machine 'fastai-instance' in $region operating Ubuntu 16.04 LTS, 32GB RAM / 128GB SSD / Tesla K80 GPU..."
+echo "Creating virtual machine in $zone operating Ubuntu 16.04 LTS, 32GB RAM / 128GB SSD / Tesla K80 GPU..."
 gcloud compute --project $projectId instances create $instanceName --zone $zone --address=$ipAddress --machine-type "custom-1-32768-ext" --subnet "default" --maintenance-policy "TERMINATE" --no-service-account --no-scopes --accelerator type=nvidia-tesla-k80,count=1 --min-cpu-platform "Intel Broadwell" --tags "http-server","https-server","jupyter" --image "ubuntu-1604-xenial-v20171212" --image-project "ubuntu-os-cloud" --boot-disk-size "128" --boot-disk-type "pd-ssd" --boot-disk-device-name $instanceName
 
 gcloud compute --project=$projectId firewall-rules create default-allow-http --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0 --target-tags=http-server
@@ -35,7 +34,7 @@ echo "gcloud compute instances delete $instanceName" >> $instanceName-remove.ps1
 echo "gcloud compute addresses delete $addressName" >> $instanceName-remove.ps1
 
 echo "All done. Find all you need to connect in the $instanceName-commands.txt file and to remove the stack call $instanceName-remove.ps1"
-echo 'Connect to your instance: gcloud compute --project $projectId ssh --zone $zone $instanceName'
+echo "Connect to your instance: gcloud compute --project $projectId ssh --zone $zone $instanceName"
 
 if ($Host.Name -eq "ConsoleHost")
 {
