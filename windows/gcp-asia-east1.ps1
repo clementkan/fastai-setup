@@ -14,9 +14,9 @@ gcloud compute --project $projectId instances create $instanceName --zone $zone 
 
 gcloud compute --project=$projectId firewall-rules create default-allow-http --network=default --action=ALLOW --rules=tcp:80 --source-ranges=0.0.0.0/0 --target-tags=http-server
 
-gcloud compute --project=fastai-190507 firewall-rules create default-allow-https --network=default --action=ALLOW --rules=tcp:443 --source-ranges=0.0.0.0/0 --target-tags=https-server
+gcloud compute --project=$projectId firewall-rules create default-allow-https --network=default --action=ALLOW --rules=tcp:443 --source-ranges=0.0.0.0/0 --target-tags=https-server
 
-gcloud compute --project=fastai-190507 firewall-rules create default-allow-jupyter --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:8888-8898 --source-ranges=0.0.0.0/0 --target-tags=jupyter
+gcloud compute --project=$projectId firewall-rules create default-allow-jupyter --direction=INGRESS --priority=1000 --network=default --action=ALLOW --rules=tcp:8888-8898 --source-ranges=0.0.0.0/0 --target-tags=jupyter
 
 echo "# Connect to your instance:" >> $instanceName-commands.txt
 echo "gcloud compute --project $projectId ssh --zone $zone $instanceName" >> $instanceName-commands.txt
